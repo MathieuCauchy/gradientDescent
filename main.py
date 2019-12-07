@@ -1,5 +1,6 @@
-import matplotlib.pyplot as plt
 import os
+
+import matplotlib.pyplot as plt
 import numpy as np
 
 
@@ -8,18 +9,17 @@ def main():
     X, y = data[:, 0], data[:, 1]
     m = y.size
     # drawData(X, y)
-    print(X)
     X = np.stack([np.ones(m), X], axis=1)
-    print(X)
+    print(y)
+    print(computeCost(X, y, np.array([2.0, 4.0])))
 
 
-def computeCost(X, y, tetha):
-    j = 0
-    m = y.size
-    number_features = tetha.size
+def computeCost(X, y, theta=np.array([0.0, 0.0])):
 
+    h = (np.dot(X, theta.T) - y) ** 2
+    print(np.dot(theta, X.T))
+    return np.sum(h) / (2 * y.size)
 
-    return j
 
 def drawData(x, y):
     plt.plot(x, y, 'ro', ms=10, mec='k')
